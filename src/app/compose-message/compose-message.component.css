@@ -1,0 +1,17 @@
+.option-box {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    cursor: pointer;
+    height: 100%; /* Important: forces equal height in columns */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.3s, background-color 0.3s;
+  }
+  
+  .option-box.selected {
+    border-color: #007bff;
+    background-color: #e7f1ff;
+  }
+  

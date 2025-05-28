@@ -1,0 +1,71 @@
+<div class="container mt-4 p-4 border rounded">
+    <h2>Compose</h2>
+  
+    <!-- Message Recipient Selection -->
+    <label class="form-label">Who do you want to message?</label>
+    <div class="row g-3 my-3">
+        <div class="col-md-6">
+          <div
+            class="option-box"
+            [class.selected]="recipient === 'Customer Care'"
+            (click)="selectRecipient('Customer Care')"
+          >
+            <p><strong>Customer Care</strong></p>
+            <small>Check on order status, plan details and more.</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div
+            class="option-box"
+            [class.selected]="recipient === 'Pharmacist'"
+            (click)="selectRecipient('Pharmacist')"
+          >
+            <p><strong>A pharmacist</strong></p>
+            <small>Get answers to your medication questions.</small>
+          </div>
+        </div>
+      </div>
+      
+  
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="from" class="form-label">From</label>
+        <select formControlName="from" class="form-select">
+          <option *ngFor="let name of fromNames" [value]="name">{{ name }}</option>
+        </select>
+      </div>
+  
+      <div class="mb-3">
+        <label for="email" class="form-label">Email*</label>
+        <input type="email" class="form-control" formControlName="email" required />
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Subject*</label>
+        <input type="text" class="form-control" formControlName="subject" maxlength="80" required />
+      </div>
+  
+      <div class="mb-3">
+        <label class="form-label">Message*</label>
+        <textarea
+          class="form-control"
+          rows="5"
+          formControlName="message"
+          maxlength="2000"
+          required
+        ></textarea>
+        <small class="text-muted">Include any order numbers and prescription names.</small>
+      </div>
+  
+      <div class="d-flex justify-content-between align-items-center">
+        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="reset" class="btn btn-link" (click)="resetForm()">Reset</button>
+      </div>
+    </form>
+  
+    <div class="alert alert-warning mt-4">
+      <strong>Don’t lose your message</strong><br />
+      If you don’t do anything for 15 minutes or log out, your message won’t be saved.
+    </div>
+  </div>
+  
